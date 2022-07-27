@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import Landing from './components/Landing';
+import LoginButton from "./components/LoginButton";
+import {useState} from "react";
+import logo from './SitRep_logo.png';
+import styled, {keyframes} from 'styled-components'
+import {fadeIn} from "react-animations";
+const FadeInDiv = styled.div`animation: 2s ${keyframes`${fadeIn}`}`;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const LoginClick = () => {
+        setShowSplashScreen(false);
+    }
+
+    const [ShowSplashScreen, setShowSplashScreen] = useState(true);
+    return (
+        <div className="App">
+            <FadeInDiv>
+                {ShowSplashScreen &&
+                    <div className="landing">
+                        <img className="logo" src={logo}/>
+                        <Landing/>
+                        <LoginButton onClick={LoginClick}/></div>
+                }
+            </FadeInDiv>
+        </div>
+    );
 }
 
 export default App;
