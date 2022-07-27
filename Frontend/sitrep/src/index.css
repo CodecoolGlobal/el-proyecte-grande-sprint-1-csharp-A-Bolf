@@ -5,6 +5,7 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #ff5000;
 }
 
 code {
@@ -36,10 +37,6 @@ code {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-body {
-    background-color: #ff5000;
 }
 
 .btn-primary,
