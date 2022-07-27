@@ -31,11 +31,8 @@ function App() {
      <img className="logo" src={logo}/>
                         <Landing/>
                         <LoginButton onClick={LoginClick}/></div>}
-         
             {!ShowSplashScreen &&
-                <Dashboard updates={Updates}/>}
-              
-                {!ShowSplashScreen && <Sidebar />}
+                <><Sidebar /><Dashboard updates={Updates}/></>}
             </FadeInDiv>
 
         </div>
