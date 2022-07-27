@@ -22,8 +22,9 @@ function App() {
                         <Landing />
                         <LoginButton onClick={LoginClick} /></div>
                 }
+                {!ShowSplashScreen && <Sidebar />}
             </FadeInDiv>
-            <Sidebar />
+
         </div>
     );
 }
