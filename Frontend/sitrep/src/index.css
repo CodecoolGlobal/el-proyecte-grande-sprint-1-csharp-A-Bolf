@@ -1,20 +1,30 @@
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+        monospace;
 }
+
 .logo {
     height: 250px;
     width: 250px;
 }
+
+.sidebar {
+    font-size: 150%;
+    height: 100vh;
+    width: fit-content;
+    position: absolute;
+
+}
+
 .landing {
     font-size: 250%;
     display: flex;
@@ -37,7 +47,7 @@ body {
 .btn-primary:active,
 .btn-primary:visited,
 .btn-primary:focus {
-    
+
     background-color: #2B73BB;
     border-color: #2B73BB;
     color: #000000;
