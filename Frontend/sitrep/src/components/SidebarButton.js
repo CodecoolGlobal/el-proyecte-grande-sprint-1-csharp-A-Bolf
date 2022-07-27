@@ -1,8 +1,8 @@
-const SidebarButton = ({ SidebarIcon, ButtonText }) => {
+const SidebarButton = ({ButtonText, SidebarIcon, ShowText}) => {
     return (
-        <div>
-            <SidebarIcon />
-            <p className="btn btn-primary">{ButtonText}</p>
+        <div className="pb-3">
+            <SidebarIcon className="h-100"/>
+            {ShowText && <span className="pl-2">{ButtonText}</span>}
         </div>
     );
 }

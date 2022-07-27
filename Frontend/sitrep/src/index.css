@@ -18,9 +18,9 @@ code {
 }
 
 .sidebar {
-    font-size: 200%;
+    font-size: 150%;
     height: 100vh;
-    display: flex;
+    width: fit-content;
     position: absolute;
 
 }
