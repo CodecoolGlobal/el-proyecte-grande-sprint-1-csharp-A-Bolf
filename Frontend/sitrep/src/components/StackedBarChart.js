@@ -41,7 +41,7 @@ export const options = {
             stacked: true,
             orientation: 'horizontal',
             ticks: {color:"#343a40"},
-            max : 130,
+            max : 60,
         },
         y: {
             ticks: {color:"#343a40"},

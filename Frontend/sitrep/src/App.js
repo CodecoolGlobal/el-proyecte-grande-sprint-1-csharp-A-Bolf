@@ -21,7 +21,7 @@ function App() {
             {
                 
                 stack: 'Stack 0',
-                backgroundColor: ["#ed8077"],
+                backgroundColor: ["#18de41"],
                 label: 'Open',
                 data: [10]
             },
@@ -29,22 +29,22 @@ function App() {
                 
                 stack: 'Stack 0',
                 label: 'Closed',
-                backgroundColor: ["#8eb7dc"],
+                backgroundColor: ["#238fde"],
                 data: [10]
             }
             , {
                 
                 stack: 'Stack 0',
                 label: 'In Progress',
-                backgroundColor: ["#4caf93"],
+                backgroundColor: ["#D73A4A"],
                 data: [10]
             },
             {
                 
                 stack: 'Stack 0',
                 label: 'Resolved',
-                backgroundColor: ["#CAB8FF"],
-                data: [100]
+                backgroundColor: ["#A371F7"],
+                data: [30]
             }
         ],
     });
