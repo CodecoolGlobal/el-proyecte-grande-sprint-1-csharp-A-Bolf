@@ -1,16 +1,16 @@
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #ff5000;
+    background-color: #f0f0f0;
 }
 
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+    monospace;
 }
 
 .logo {
@@ -26,11 +26,34 @@ code {
 
 }
 
+canvas {
+    position: relative;
+    right: 50%;
+}
+
+.chart-container {
+    width: fit-content;
+    position: absolute;
+    align-content: center;
+    align-items: center;
+    display: grid;
+    top: 0;
+    right: 0;
+}
+
+.updates {
+    padding-left: 25px;
+    left: 20vh;
+    width: 80vh;
+    position: relative;
+}
+
 .landing {
     font-size: 250%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     justify-content: center;
     height: 100vh;
     position: absolute;
@@ -45,9 +68,9 @@ code {
 .btn-primary:visited,
 .btn-primary:focus {
 
-    background-color: #2B73BB;
-    border-color: #2B73BB;
-    color: #000000;
+    background-color: #343a40;
+    border-color: #343a40;
+    color: #ffffff;
     font-size: 50%;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
