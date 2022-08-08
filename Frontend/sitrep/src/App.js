@@ -18,6 +18,7 @@ function App() {
 
 
     const [ShowSplashScreen, setShowSplashScreen] = useState(true);
+
     const [Updates, setUpdates] = useState([{ id: 1, issue: "Issue1", time_ago: "5 mins" }, {
         id: 2,
         issue: "Issue2",
