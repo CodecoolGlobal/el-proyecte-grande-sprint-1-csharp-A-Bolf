@@ -27,7 +27,7 @@ public class Ticket
         Assignee = assignee;
         DueDate = dueDate;
         CreatedDate = DateTime.Now;
-        Status = StatusType.OPEM;
+        Status = StatusType.OPEN;
         CreatedBy = Creator;
         LastUpdatedDate = DateTime.Now;
     }

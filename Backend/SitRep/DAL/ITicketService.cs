@@ -1,4 +1,5 @@
 using SitRep.Models;
+using SitRep.Models.Types;
 
 namespace SitRep.DAL;
 
@@ -9,4 +10,5 @@ public interface ITicketService
     public void Add(Ticket ticket);
     public void Update(Ticket ticket);
     public void Delete(int id);
+    public Dictionary<StatusType,int> GetStatusCounts();
 }

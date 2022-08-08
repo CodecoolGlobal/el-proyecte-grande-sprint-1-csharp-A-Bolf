@@ -4,7 +4,7 @@ namespace SitRep.Models.Types;
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum StatusType
 {
-    OPEM,
+    OPEN,
     IN_PROGRESS,
     RESOLVED,
     CLOSED,
