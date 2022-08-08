@@ -75,3 +75,29 @@ canvas {
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
 }
+.form-container{
+    width: fit-content;
+    position: absolute;
+    align-content: center;
+    align-items: center;
+    display: grid;
+}
+#issue-title{
+    width: 70vw;
+}
+
+#issue-description{
+    width: 70vw;
+    height: 40vh;
+}
+
+.property-container select{
+    margin: 20px;
+}
+.property-container input{
+    margin: 20px;
+}
+
+.create-ticket-button{
+    float: right;
+}
