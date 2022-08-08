@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace SitRep.Models;
 
 public class User

@@ -1,3 +1,4 @@
+using System;
 using SitRep.Models.Types;
 
 namespace SitRep.Models;

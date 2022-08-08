@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SitRep.DAL;
 using SitRep.Models;
 using SitRep.Models.Types;
