@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using SitRep.Models;
+using SitRep.Models.Types;
 
 namespace SitRep.DAL;
 
@@ -12,5 +13,4 @@ public interface IRepository<T>
     public void Delete(int id);
 
     public void SetUpMockData();
-
 }

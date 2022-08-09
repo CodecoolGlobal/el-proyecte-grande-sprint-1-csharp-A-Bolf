@@ -11,6 +11,7 @@ public class TicketController:ControllerBase
     
     public TicketController(ITicketService ticketService)
     {
+        
         _ticketService = ticketService;
     }
     

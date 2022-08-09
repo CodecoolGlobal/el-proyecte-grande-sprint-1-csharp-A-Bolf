@@ -99,4 +99,6 @@ public class TicketRepository : IRepository<Ticket>
             CreatedBy = new User(1, "user1")
         });
     }
+
+    
 }

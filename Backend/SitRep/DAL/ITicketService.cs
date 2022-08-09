@@ -12,4 +12,5 @@ public interface ITicketService
     public void Update(Ticket ticket);
     public void Delete(int id);
     public Dictionary<StatusType,int> GetStatusCounts();
+    public void SetUpMockData();
 }
