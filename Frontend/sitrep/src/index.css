@@ -12,40 +12,45 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.app {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100vh;
+}
 
 .logo {
     height: 250px;
     width: 250px;
 }
 
-.sidebar {
+.sidenav {
     font-size: 150%;
     height: 100vh;
     width: fit-content;
-    position: absolute;
+    position: relative !important;
+    margin-right: 5vw;
+
+}
+.text-link {
+    color: inherit;
+    text-decoration: inherit;
 
 }
 
-canvas {
-    position: relative;
-    right: 50%;
-}
-
-.chart-container {
+.container{
     width: fit-content;
-    position: absolute;
     align-content: center;
     align-items: center;
-    display: grid;
-    top: 0;
-    right: 0;
+    display:flex;
+    flex-direction: row;
+    height: fit-content;
 }
 
 .updates {
     padding-left: 25px;
-    left: 20vh;
     width: 80vh;
-    position: relative;
 }
 
 .landing {

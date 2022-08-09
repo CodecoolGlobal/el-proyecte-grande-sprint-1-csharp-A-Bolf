@@ -1,11 +1,11 @@
-import Sidebar from "./Sidebar";
 import { Outlet } from "react-router";
+import SideNavBar from "./SideNavBar";
 const Layout = () => {
   return (
-    <div className="app">
-      <Sidebar />
+    <>
+      <SideNavBar />
       <Outlet />
-    </div>
+    </>
   );
 };
 
