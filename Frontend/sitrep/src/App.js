@@ -1,5 +1,6 @@
 import Layout from "./components/Layout";
 import Dashboard from "./components/DashBoard";
+import CreateTicket from "./components/CreateTicket";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -18,13 +19,11 @@ function App() {
     },
   ]);
   return (
-    <div className="App">
+    <div className="app">
       <Routes>
         <Route path="app" element={<Layout />}>
-          <Route
-            path="dashboard"
-            element={<Dashboard updates={Updates} />}
-          ></Route>
+          <Route path="dashboard" element={<Dashboard updates={Updates} />} />
+          <Route path="add-ticket" element={<CreateTicket />} />
         </Route>
       </Routes>
     </div>

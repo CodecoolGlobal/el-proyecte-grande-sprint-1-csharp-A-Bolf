@@ -12,6 +12,14 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.app {
+    float: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100vh;
+    transition: transform 1s ease-in-out;
+}
 
 .logo {
     height: 250px;
@@ -22,18 +30,13 @@ code {
     font-size: 150%;
     height: 100vh;
     width: fit-content;
-    position: absolute;
-
-}
-
-canvas {
     position: relative;
-    right: 50%;
+    margin-right: 5vw;
+
 }
 
 .chart-container {
     width: fit-content;
-    position: absolute;
     align-content: center;
     align-items: center;
     display: grid;
@@ -43,9 +46,7 @@ canvas {
 
 .updates {
     padding-left: 25px;
-    left: 20vh;
     width: 80vh;
-    position: relative;
 }
 
 .landing {
