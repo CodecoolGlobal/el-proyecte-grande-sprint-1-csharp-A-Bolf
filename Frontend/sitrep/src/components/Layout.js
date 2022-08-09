@@ -1,12 +1,10 @@
-import Sidebar from "./Sidebar";
 import { Outlet } from "react-router";
+import SideNavBar from "./SideNavBar";
 const Layout = () => {
   return (
     <>
-      <Sidebar />
-      <div>
-        <Outlet />
-      </div>
+      <SideNavBar />
+      <Outlet />
     </>
   );
 };
