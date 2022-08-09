@@ -1,8 +1,10 @@
-const LoginButton = ({onClick}) => {
-    return (
-        <button onClick={onClick} className="btn btn-primary">
-            Login
-        </button>
-    );
-}
+import { Link } from "react-router-dom";
+
+const LoginButton = () => {
+  return (
+    <Link to="/app/dashboard">
+      <button className="btn btn-primary">Login</button>{" "}
+    </Link>
+  );
+};
 export default LoginButton;
