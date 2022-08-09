@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SitRep.DAL;
 using SitRep.Models;
+using SitRep.Models.Types;
 
 public class TicketRepository : IRepository<Ticket>
 {
@@ -47,7 +48,55 @@ public class TicketRepository : IRepository<Ticket>
         Tickets.Remove(GetById(id));
     }
 
+    public void SetUpMockData()
+    {
+        //create example Tickets
+        Tickets.Add(new Ticket
+        {
+            Id = 1,
+            Title = "Ticket 1",
+            Description = "This is a test ticket",
+            Priority = PriorityType.LOW,
+            Type = TicketType.BUG,
+            Assignee = new User(1,"user1"),
+            DueDate = DateTime.Now.AddDays(1),
+            CreatedBy = new User(1,"user1")
 
-    
-    
+        });
+        Tickets.Add(new Ticket
+        {
+            Id = 2,
+            Title = "Ticket 2",
+            Description = "This is a test ticket",
+            Priority = PriorityType.LOW,
+            Type = TicketType.BUG,
+            Assignee = new User(1,"user1"),
+            DueDate = DateTime.Now.AddDays(1),
+            CreatedBy = new User(1,"user1")
+
+        });
+        Tickets.Add(new Ticket
+        {
+            Id = 3,
+            Title = "Ticket 3",
+            Description = "This is a test ticket",
+            Priority = PriorityType.LOW,
+            Type = TicketType.BUG,
+            Assignee = new User(1,"user1"),
+            DueDate = DateTime.Now.AddDays(1),
+            CreatedBy = new User(1,"user1")
+
+        });
+        Tickets.Add(new Ticket
+        {
+            Id = 4,
+            Title = "Ticket 4",
+            Description = "This is a test ticket",
+            Priority = PriorityType.LOW,
+            Type = TicketType.BUG,
+            Assignee = new User(1, "user1"),
+            DueDate = DateTime.Now.AddDays(1),
+            CreatedBy = new User(1, "user1")
+        });
+    }
 }

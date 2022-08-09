@@ -22,7 +22,6 @@ public class TicketService : ITicketService
     }
     public IEnumerable<Ticket> GetAll()
     {
-        _Repository.Add(new Ticket(5));
         return _Repository.GetAll();
     }
 

@@ -32,9 +32,10 @@ public class Ticket
         CreatedBy = Creator;
         LastUpdatedDate = DateTime.Now;
     }
-
-    public Ticket(int id)
+    public Ticket()
     {
-        Id = id;
+        CreatedDate = DateTime.Now;
+        Status = StatusType.OPEN;
+        LastUpdatedDate = DateTime.Now;
     }
 }

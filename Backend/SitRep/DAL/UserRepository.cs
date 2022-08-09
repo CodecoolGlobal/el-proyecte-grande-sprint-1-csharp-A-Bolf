@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using SitRep.Models;
 
 namespace SitRep.DAL;
@@ -43,5 +41,14 @@ public class UserRepository: IRepository<User>
         {
             Users.Remove(user);
         }
+    }
+
+    public void SetUpMockData()
+    {
+        //add mock users to list
+        Users.Add(new User { id = 1, name = "John Doe"});
+        Users.Add(new User { id = 2, name = "Jane Doe"});
+        Users.Add(new User { id = 3, name = "Joe Doe"});
+        Users.Add(new User{id = 4, name = "John Smith"});
     }
 }
