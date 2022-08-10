@@ -20,6 +20,13 @@ public class TicketService : ITicketService
             { StatusType.CLOSED, Tickets.Count(t => t.Status == StatusType.CLOSED) }
         };
     }
+
+    public IEnumerable<Ticket> GetRecentUpdates()
+    {
+        //return last 4 tickets updated
+        return _Repository.GetAll().OrderByDescending(t => t.LastUpdatedDate).Take(3);
+    }
+
     public IEnumerable<Ticket> GetAll()
     {
         return _Repository.GetAll();
