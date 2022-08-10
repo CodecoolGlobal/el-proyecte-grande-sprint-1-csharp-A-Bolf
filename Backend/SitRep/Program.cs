@@ -22,6 +22,8 @@ builder.Services.AddCors(options =>
         policy  =>
         {
             policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+            policy.WithOrigins("https://zealous-flower-0589cae03.1.azurestaticapps.net/").AllowAnyHeader().AllowAnyMethod();
+            
         });
 });
 
@@ -37,6 +39,7 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
 app.UseCors(AllowedSpecificOrigins);
 
 app.UseAuthorization();
