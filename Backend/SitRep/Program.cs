@@ -5,7 +5,6 @@ using SitRep.DAL;
 using SitRep.Models;
 
 var  AllowedSpecificOrigins = "_AllowedSpecificOrigins";
-
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -23,21 +22,25 @@ builder.Services.AddCors(options =>
         policy  =>
         {
             policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod();
+            policy.WithOrigins("https://zealous-flower-0589cae03.1.azurestaticapps.net/").AllowAnyHeader().AllowAnyMethod();
+            
         });
 });
 
 
 var app = builder.Build();
-
+    
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseCors(AllowedSpecificOrigins);
+
 
 app.UseHttpsRedirection();
+
+app.UseCors(AllowedSpecificOrigins);
 
 app.UseAuthorization();
 

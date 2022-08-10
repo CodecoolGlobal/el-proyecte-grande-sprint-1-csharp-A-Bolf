@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { options } from "./components/StackedBarChart";
 import axios from "axios";
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 function App() {
   function CalcTotalTicketCount(StatusData) {
     return (
@@ -16,7 +17,10 @@ function App() {
   }
 
   const fetchOnLoad = async () => {
-    axios.get("https://localhost:7003/api/ticket/statuscounts").then((res) => {
+    axios.get(`${API_ENDPOINT}/api/ticket`).then((res) => {
+      setUpdates(res.data);
+    });
+    axios.get(`${API_ENDPOINT}/api/ticket/statuscounts`).then((res) => {
       setStatusData(res.data);
       setIsLoading(false);
       console.log(res.data);
