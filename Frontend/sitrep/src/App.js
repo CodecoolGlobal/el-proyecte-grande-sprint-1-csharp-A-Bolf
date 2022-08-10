@@ -22,11 +22,11 @@ function App() {
     });
     axios.get(`${API_ENDPOINT}/api/ticket/statuscounts`).then((res) => {
       setStatusData(res.data);
-      ChartData.datasets[0].data = [StatusData.OPEN];
-      ChartData.datasets[1].data = [StatusData.CLOSED];
-      ChartData.datasets[2].data = [StatusData.IN_PROGRESS];
-      ChartData.datasets[3].data = [StatusData.RESOLVED];
-      options.scales.x.max = CalcTotalTicketCount(StatusData);
+      ChartData.datasets[0].data = [res.data.OPEN];
+      ChartData.datasets[1].data = [res.data.CLOSED];
+      ChartData.datasets[2].data = [res.data.IN_PROGRESS];
+      ChartData.datasets[3].data = [res.data.RESOLVED];
+      options.scales.x.max = CalcTotalTicketCount(res.data);
       setIsLoading(false);
     });
   };
@@ -50,4 +50,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
