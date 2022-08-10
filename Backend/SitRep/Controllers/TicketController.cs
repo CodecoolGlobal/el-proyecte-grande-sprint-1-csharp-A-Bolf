@@ -21,6 +21,12 @@ public class TicketController:ControllerBase
         return Ok(_ticketService.GetAll());
     }
     
+    [HttpGet("/api/ticket/updates")]
+    public IActionResult GetRecentUpdates()
+    {
+        return Ok(_ticketService.GetRecentUpdates());
+    }
+
     [HttpGet("/api/ticket/statuscounts")]
     public IActionResult GetStatusCounts()
     {
