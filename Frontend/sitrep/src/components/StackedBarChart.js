@@ -17,6 +17,36 @@ ChartJS.register(
   Legend
 );
 
+export const ChartData = {
+  labels: [""],
+  datasets: [
+    {
+      stack: "Stack 0",
+      backgroundColor: ["#18de41"],
+      label: "Open",
+      data: [],
+    },
+    {
+      stack: "Stack 0",
+      label: "Closed",
+      backgroundColor: ["#238fde"],
+      data: [],
+    },
+    {
+      stack: "Stack 0",
+      label: "In Progress",
+      backgroundColor: ["#D73A4A"],
+      data: [],
+    },
+    {
+      stack: "Stack 0",
+      label: "Resolved",
+      backgroundColor: ["#A371F7"],
+      data: [],
+    },
+  ],
+};
+
 export const options = {
   tooltips: { enabled: false },
   hover: { mode: null },
@@ -41,6 +71,7 @@ export const options = {
       orientation: "horizontal",
       ticks: { color: "#343a40" },
       maxStepSize: 1,
+      stepSize: 1,
     },
     y: {
       ticks: { color: "#343a40" },
