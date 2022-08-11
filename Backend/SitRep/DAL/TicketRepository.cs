@@ -58,7 +58,6 @@ public class TicketRepository : IRepository<Ticket>
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1,"user1"),
             DueDate = DateTime.Now.AddDays(1),
             CreatedBy = new User(1,"user1")
 
@@ -70,7 +69,6 @@ public class TicketRepository : IRepository<Ticket>
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1,"user1"),
             DueDate = DateTime.Now.AddDays(1),
             CreatedBy = new User(1,"user1")
 
@@ -82,7 +80,6 @@ public class TicketRepository : IRepository<Ticket>
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1,"user1"),
             DueDate = DateTime.Now.AddDays(1),
             CreatedBy = new User(1,"user1")
 
@@ -94,7 +91,6 @@ public class TicketRepository : IRepository<Ticket>
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1, "user1"),
             DueDate = DateTime.Now.AddDays(1),
             CreatedBy = new User(1, "user1")
         });

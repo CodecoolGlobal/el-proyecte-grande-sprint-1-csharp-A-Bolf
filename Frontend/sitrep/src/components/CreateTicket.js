@@ -15,22 +15,28 @@ const CreateTicket = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const ticket = {
-      type,
+      type: type,
       title,
       description,
       priority,
       category,
       assignee,
+      date,
       //add date here
     };
-    const tempURL = "/api/ticket/add";
+
+    const tempURL = "https://localhost:7003/api/ticket/add";
     fetch(tempURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(ticket),
-    }).then(() => {
-      console.log("new Ticket Added!");
-    });
+    })
+      .then(() => {
+        console.log("new Ticket Added!", JSON.stringify(ticket));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -83,6 +89,8 @@ const CreateTicket = () => {
             Date:
             <input
               type="Date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
               //add date hook here
             />
             <Dropdown

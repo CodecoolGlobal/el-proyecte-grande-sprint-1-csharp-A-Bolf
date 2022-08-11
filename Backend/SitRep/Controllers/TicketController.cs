@@ -5,9 +5,11 @@ using SitRep.Models;
 
 namespace SitRep.Controllers;
 [ApiController]
+[Route("/api/ticket")]
 public class TicketController:ControllerBase
 {
     private readonly ITicketService _ticketService ;
+    
     
     public TicketController(ITicketService ticketService)
     {
@@ -15,7 +17,7 @@ public class TicketController:ControllerBase
         _ticketService = ticketService;
     }
     
-    [HttpGet("/api/ticket")]
+    [HttpGet("/api/ticket2")]
     public IActionResult GetAll()
     {
         return Ok(_ticketService.GetAll());
@@ -33,11 +35,13 @@ public class TicketController:ControllerBase
         return Ok(_ticketService.GetById(id));
     }
     
-    [HttpPost("/api/ticket/add")]
-    public IActionResult Create([FromBody]Ticket ticket)
+    [HttpPost]
+    public ActionResult<TicketDTO> Create(TicketDTO ticket2)
     {
-        _ticketService.Add(ticket);
-        return Ok(ticket);
+        Console.WriteLine(ticket2);
+        Console.WriteLine(Request.Body);
+        // _ticketService.Add(ticket);
+        return Ok(ticket2);
     }
     
     [HttpPut("/api/ticket/update")]
