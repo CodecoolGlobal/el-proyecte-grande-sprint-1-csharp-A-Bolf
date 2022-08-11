@@ -4,8 +4,10 @@ using Microsoft.Extensions.Hosting;
 using SitRep.DAL;
 using SitRep.Models;
 
-var AllowedSpecificOrigins = "_AllowedSpecificOrigins";
+const string AllowedDevelopmentOrigin = "_allowedDevelopmentOrigin";
+const string AllowedProductionOrigin = "_allowedProductionOrigin";
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -17,17 +19,21 @@ builder.Services.AddSingleton<IRepository<Ticket>, TicketRepository>();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: AllowedSpecificOrigins,
+    options.AddPolicy(name: AllowedDevelopmentOrigin,
+        policy => { policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod(); });
+});
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowedProductionOrigin,
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod(); 
-            
+            policy.WithOrigins("https://zealous-flower-0589cae03.1.azurestaticapps.net").AllowAnyHeader()
+                .AllowAnyMethod();
         });
 });
 
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -36,9 +42,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
-app.UseCors(AllowedSpecificOrigins);
+if(app.Environment.IsDevelopment())
+{
+    app.UseCors(AllowedDevelopmentOrigin);
+}
+else
+{
+    app.UseCors(AllowedProductionOrigin);
+}
 
 app.UseAuthorization();
 
