@@ -59,7 +59,6 @@ public class TicketRepository : IRepository<Ticket>
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1,"user1")
 
         });
         Tickets.Add(new Ticket
@@ -70,7 +69,6 @@ public class TicketRepository : IRepository<Ticket>
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1,"user1")
 
         });
         Tickets.Add(new Ticket
@@ -81,7 +79,6 @@ public class TicketRepository : IRepository<Ticket>
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1,"user1")
 
         });
         Tickets.Add(new Ticket
@@ -92,7 +89,6 @@ public class TicketRepository : IRepository<Ticket>
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1, "user1")
         });
     }
 

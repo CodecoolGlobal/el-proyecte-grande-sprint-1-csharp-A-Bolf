@@ -31,7 +31,6 @@ public class UserRepository: IRepository<User>
         {
             user.name = item.name;
             user.id = item.id;
-            user.tickets = item.tickets;
         }
     }
 

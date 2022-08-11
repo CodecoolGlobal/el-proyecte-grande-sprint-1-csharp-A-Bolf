@@ -14,10 +14,11 @@ public class Ticket
     public DateTime DueDate { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime LastUpdatedDate { get; set; }
-    public User CreatedBy { get; set; }
+    public int[] AssigneeIDs { get; set; }
+    public int CreatorID { get; set; }
 
 
-    public Ticket(int id, string title, string description, PriorityType priority, TicketType type,DateTime dueDate, User Creator)
+    public Ticket(int id, string title, string description, PriorityType priority, TicketType type,DateTime dueDate)
     {
         Id = id;
         Title = title;
@@ -27,7 +28,6 @@ public class Ticket
         DueDate = dueDate;
         CreatedDate = DateTime.Now;
         Status = StatusType.OPEN;
-        CreatedBy = Creator;
         LastUpdatedDate = DateTime.Now;
     }
     public Ticket(string title, string description)
@@ -44,5 +44,21 @@ public class Ticket
         CreatedDate = DateTime.Now;
         Status = StatusType.OPEN;
         LastUpdatedDate = DateTime.Now;
+    }
+    
+    public Ticket(TicketDTO ticketDTO)
+    {
+        Id = ticketDTO.Id;
+        Title = ticketDTO.Title;
+        Description = ticketDTO.Description;
+        Status = ticketDTO.Status;
+        Priority = ticketDTO.Priority;
+        Type = ticketDTO.Type;
+        DueDate = ticketDTO.DueDate;
+        CreatedDate = ticketDTO.CreatedDate;
+        LastUpdatedDate = ticketDTO.LastUpdatedDate;
+        AssigneeIDs = ticketDTO.AssigneeIDs;
+        CreatorID = ticketDTO.CreatorID;
+        
     }
 }

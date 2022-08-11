@@ -36,12 +36,12 @@ public class TicketController:ControllerBase
     }
     
     [HttpPost]
-    public ActionResult<TicketDTO> Create(TicketDTO ticket2)
+    public ActionResult<TicketDTO> Create(TicketDTO ticketDTO)
     {
-        Console.WriteLine(ticket2);
-        Console.WriteLine(Request.Body);
+        _ticketService.Add(new Ticket(ticketDTO));
+        
         // _ticketService.Add(ticket);
-        return Ok(ticket2);
+        return Ok(_ticketService.GetAll());
     }
     
     [HttpPut("/api/ticket/update")]

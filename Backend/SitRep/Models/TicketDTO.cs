@@ -4,9 +4,16 @@ namespace SitRep.Models;
 
 public class TicketDTO
 {
+    public int Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public StatusType Status { get; set; }
-    public string[] UserIDs { get; set; }
+    public PriorityType Priority { get; set; }
+    public TicketType Type { get; set; }
+    public DateTime DueDate { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime LastUpdatedDate { get; set; }
+    public int[] AssigneeIDs { get; set; }
+    public int CreatorID { get; set; }
   
 }
