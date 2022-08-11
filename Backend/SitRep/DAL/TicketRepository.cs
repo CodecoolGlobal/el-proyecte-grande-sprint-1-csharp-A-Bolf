@@ -58,9 +58,7 @@ public class TicketRepository : IRepository<Ticket>
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1,"user1"),
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1,"user1")
 
         });
         Tickets.Add(new Ticket
@@ -70,33 +68,29 @@ public class TicketRepository : IRepository<Ticket>
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1,"user1"),
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1,"user1")
 
         });
         Tickets.Add(new Ticket
         {
             Id = 3,
             Title = "Ticket 3",
+            Status = StatusType.RESOLVED,
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1,"user1"),
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1,"user1")
 
         });
         Tickets.Add(new Ticket
         {
             Id = 4,
             Title = "Ticket 4",
+            Status = StatusType.CLOSED,
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
-            Assignee = new User(1, "user1"),
             DueDate = DateTime.Now.AddDays(1),
-            CreatedBy = new User(1, "user1")
         });
     }
 

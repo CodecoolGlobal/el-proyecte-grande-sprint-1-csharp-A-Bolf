@@ -11,31 +11,54 @@ public class Ticket
     public StatusType Status { get; set; }
     public PriorityType Priority { get; set; }
     public TicketType Type { get; set; }
-    public User Assignee { get; set; }
     public DateTime DueDate { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime LastUpdatedDate { get; set; }
-    public User CreatedBy { get; set; }
+    public int[] AssigneeIDs { get; set; }
+    public int CreatorID { get; set; }
 
 
-    public Ticket(int id, string title, string description, PriorityType priority, TicketType type, User assignee, DateTime dueDate, User Creator)
+    public Ticket(int id, string title, string description, PriorityType priority, TicketType type,DateTime dueDate)
     {
         Id = id;
         Title = title;
         Description = description;
         Priority = priority;
         Type = type;
-        Assignee = assignee;
         DueDate = dueDate;
         CreatedDate = DateTime.Now;
         Status = StatusType.OPEN;
-        CreatedBy = Creator;
         LastUpdatedDate = DateTime.Now;
     }
+    public Ticket(string title, string description)
+    {
+        Title = title;
+        Description = description;
+        CreatedDate = DateTime.Now;
+        Status = StatusType.OPEN;
+        LastUpdatedDate = DateTime.Now;
+    }
+
     public Ticket()
     {
         CreatedDate = DateTime.Now;
         Status = StatusType.OPEN;
         LastUpdatedDate = DateTime.Now;
+    }
+    
+    public Ticket(TicketDTO ticketDTO)
+    {
+        Id = ticketDTO.Id;
+        Title = ticketDTO.Title;
+        Description = ticketDTO.Description;
+        Status = ticketDTO.Status;
+        Priority = ticketDTO.Priority;
+        Type = ticketDTO.Type;
+        DueDate = ticketDTO.DueDate;
+        CreatedDate = ticketDTO.CreatedDate;
+        LastUpdatedDate = ticketDTO.LastUpdatedDate;
+        AssigneeIDs = ticketDTO.AssigneeIDs;
+        CreatorID = ticketDTO.CreatorID;
+        
     }
 }
