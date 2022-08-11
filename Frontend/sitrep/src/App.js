@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { options, ChartData } from "./components/StackedBarChart";
 import axios from "axios";
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+export const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 function App() {
   function CalcTotalTicketCount(StatusData) {
     return (
@@ -43,7 +43,10 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="app/*" element={<Layout />}>
-          <Route path="dashboard" element={<Dashboard updates={Updates} />} />
+          <Route
+            path="dashboard"
+            element={<Dashboard updates={Updates} fetchOnLoad={fetchOnLoad} />}
+          />
           <Route path="add-issue" element={<CreateTicket />} />
         </Route>
       </Routes>

@@ -75,6 +75,7 @@ public class TicketRepository : IRepository<Ticket>
         {
             Id = 3,
             Title = "Ticket 3",
+            Status = StatusType.RESOLVED,
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
@@ -85,6 +86,7 @@ public class TicketRepository : IRepository<Ticket>
         {
             Id = 4,
             Title = "Ticket 4",
+            Status = StatusType.CLOSED,
             Description = "This is a test ticket",
             Priority = PriorityType.LOW,
             Type = TicketType.BUG,
