@@ -1,6 +1,6 @@
 import Update from "./Update";
 import TicketStatusChart from "./TicketStatusChart";
-const DashBoard = ({ updates }) => {
+const DashBoard = ({ updates, StatusCounts }) => {
   return (
     <div className="container justify-content-center">
       <div className="text-center updates ">
@@ -11,7 +11,7 @@ const DashBoard = ({ updates }) => {
           ))}
         </div>
       </div>
-      <TicketStatusChart />
+      <TicketStatusChart StatusCounts={StatusCounts} />
     </div>
   );
 };
