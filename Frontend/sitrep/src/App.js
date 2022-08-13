@@ -3,7 +3,7 @@ import Dashboard from "./components/DashBoard";
 import CreateTicket from "./components/CreateTicket";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { options, ChartData } from "./components/StackedBarChart";
+import { options } from "./components/StackedBarChart";
 import axios from "axios";
 export const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 function App() {
@@ -15,27 +15,48 @@ function App() {
       StatusData.RESOLVED
     );
   }
-
-  const fetchOnLoad = async () => {
-    axios.get(`${API_ENDPOINT}/api/ticket/updates`).then((res) => {
-      setUpdates(res.data);
-    });
-    axios.get(`${API_ENDPOINT}/api/ticket/statuscounts`).then((res) => {
-      setStatusData(res.data);
-      ChartData.datasets[0].data = [res.data.OPEN];
-      ChartData.datasets[1].data = [res.data.CLOSED];
-      ChartData.datasets[2].data = [res.data.IN_PROGRESS];
-      ChartData.datasets[3].data = [res.data.RESOLVED];
-      options.scales.x.max = CalcTotalTicketCount(res.data);
-      setIsLoading(false);
-    });
+  const getMostRecentTickets = (Tickets) => {
+    return Tickets.sort((a, b) => {
+      return new Date(b.lastUpdatedDate) - new Date(a.lastUpdatedDate);
+    }).slice(0, 3);
   };
+
+  const getTicketStatusCounts = (Tickets) => {
+    const StatusData = { OPEN: 0, CLOSED: 0, IN_PROGRESS: 0, RESOLVED: 0 };
+    Tickets.forEach((ticket) => {
+      if (!StatusData[ticket.status]) {
+        StatusData[ticket.status] = 1;
+      } else {
+        StatusData[ticket.status]++;
+      }
+    });
+    return StatusData;
+  };
+  const [Tickets, setTickets] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [StatusData, setStatusData] = useState([]);
+  const [StatusCounts, setStatusCounts] = useState({});
   const [Updates, setUpdates] = useState([]);
+
   useEffect(() => {
-    fetchOnLoad();
-  }, []);
+    setUpdates(getMostRecentTickets(Tickets));
+    setStatusCounts(getTicketStatusCounts(Tickets));
+  }, [Tickets]);
+
+  useEffect(() => {
+    options.scales.x.max = CalcTotalTicketCount(StatusCounts);
+  }, [StatusCounts]);
+
+  useEffect(() => {
+    if (isLoading) {
+      axios.get(`${API_ENDPOINT}/api/ticket`).then((res) => {
+        setTickets(res.data);
+      });
+      if (Tickets.length > 0 && StatusCounts !== {} && Updates.length > 0) {
+        setIsLoading(false);
+      }
+    }
+  }, [isLoading, Tickets.length, StatusCounts, Updates.length]);
+
   if (isLoading) {
     return <div className="load-screen">Loading...</div>;
   }
@@ -45,7 +66,9 @@ function App() {
         <Route path="app/*" element={<Layout />}>
           <Route
             path="dashboard"
-            element={<Dashboard updates={Updates} fetchOnLoad={fetchOnLoad} />}
+            element={
+              <Dashboard updates={Updates} StatusCounts={StatusCounts} />
+            }
           />
           <Route path="add-issue" element={<CreateTicket />} />
         </Route>

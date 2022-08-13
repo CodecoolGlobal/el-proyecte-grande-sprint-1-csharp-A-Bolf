@@ -17,7 +17,7 @@ public class TicketController:ControllerBase
         _ticketService = ticketService;
     }
     
-    [HttpGet("/api/ticket2")]
+    [HttpGet("/api/ticket")]
     public IActionResult GetAll()
     {
         return Ok(_ticketService.GetAll());
