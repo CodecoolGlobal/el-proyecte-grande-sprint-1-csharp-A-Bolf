@@ -4,6 +4,7 @@ import CreateTicket from "./components/CreateTicket";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { options } from "./components/StackedBarChart";
+import LoadScreen from "./components/LoadScreen";
 import axios from "axios";
 export const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 function App() {
@@ -58,7 +59,7 @@ function App() {
   }, [isLoading, Tickets.length, StatusCounts, Updates.length]);
 
   if (isLoading) {
-    return <div className="load-screen">Loading...</div>;
+    return <LoadScreen />;
   }
   return (
     <div className="app">
