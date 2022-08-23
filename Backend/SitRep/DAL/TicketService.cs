@@ -6,12 +6,17 @@ using SitRep.Models.Types;
 namespace SitRep.DAL;
 
 public class TicketService : ITicketService
-{
-    private readonly IRepository<Ticket> _Repository;
+{ 
+    private readonly SitRepContext _context;
+    
+    public TicketService(SitRepContext context)
+    {
+        _context = context;
+    }
 
     public Dictionary<StatusType, int> GetStatusCounts()
     { 
-        var Tickets= _Repository.GetAll();
+        var Tickets= _context.Tickets;
         return new Dictionary<StatusType, int>
         {
             { StatusType.OPEN, Tickets.Count(t => t.Status == StatusType.OPEN) },
@@ -23,47 +28,36 @@ public class TicketService : ITicketService
 
     public IEnumerable<Ticket> GetRecentUpdates()
     {
-        //return last 4 tickets updated
-        return _Repository.GetAll().OrderByDescending(t => t.LastUpdatedDate).Take(3);
+        //return last 3 tickets updated
+        return _context.Tickets.OrderByDescending(t => t.LastUpdatedDate).Take(3);
+
     }
 
     public IEnumerable<Ticket> GetAll()
     {
-        return _Repository.GetAll();
+        return _context.Tickets.ToList();
     }
 
     public Ticket GetById(int id)
     {
-        return _Repository.GetById(id);
+        return _context.Tickets.FirstOrDefault(ticket => ticket.Id == id);
     }
 
     public void Add(Ticket ticket)
     {
-        _Repository.Add(ticket);
+        _context.Add(ticket);
+        _context.SaveChanges();
     }
 
     public void Update(Ticket ticket)
     {
-        _Repository.Update(ticket);
+        _context.Update(ticket);
+        _context.SaveChanges();
     }
 
     public void Delete(int id)
     {
-        _Repository.Delete(id);
-    }
-    
-    
-    public TicketService(IRepository<Ticket> repository)
-    {
-        _Repository = repository;
-        if (!_Repository.GetAll().Any())
-        {
-            SetUpMockData();
-        }
-    }
-
-    public void SetUpMockData()
-    {
-        _Repository.SetUpMockData();
+        
+        _context.Tickets.Remove(GetById(id));
     }
 }
