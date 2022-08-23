@@ -13,7 +13,7 @@ public class TicketDTO
     public DateTime DueDate { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime LastUpdatedDate { get; set; }
-    public int[] AssigneeIDs { get; set; }
+    public List<User> Assignees { get; set; } = new List<User>();
     public int CreatorID { get; set; }
   
 }
