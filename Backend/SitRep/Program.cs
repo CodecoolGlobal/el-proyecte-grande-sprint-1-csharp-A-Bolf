@@ -38,9 +38,14 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
+builder.Services.AddTransient<SitRepSeed>();
 
 
 var app = builder.Build();
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+var initializer = services.GetRequiredService<SitRepSeed>();
+initializer.Seed();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
