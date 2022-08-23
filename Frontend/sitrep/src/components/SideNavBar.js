@@ -21,7 +21,12 @@ const SideNavBar = () => {
         console.log(selected);
         navigate(`./${selected}`);
       }}
-      style={{ backgroundColor: "#343a40", position: "relative" }}
+      style={{
+        backgroundColor: "#343a40",
+        position: "relative",
+        marginTop: "45px",
+        // margin is to avoid overlap with topnavbar
+      }}
     >
       <Toggle />
       <Nav defaultSelected="Dashboard">

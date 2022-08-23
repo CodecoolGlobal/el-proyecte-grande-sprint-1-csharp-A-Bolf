@@ -97,7 +97,6 @@ const CreateTicket = () => {
               options={["user1", "user2"]}
               onChange={(e) => setAssignee(e.target.value)}
             />
-            <button>{title} or NOTHING</button>
           </div>
           <CreateTicketButtons />
         </form>

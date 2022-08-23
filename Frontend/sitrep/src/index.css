@@ -34,13 +34,7 @@ code {
   text-align: left;
   margin-bottom: 2vh;
 }
-.sidenav {
-  font-size: 150%;
-  height: 100vh;
-  width: fit-content;
-  position: relative !important;
-  margin-right: 5vw;
-}
+
 .text-link {
   color: inherit;
   text-decoration: inherit;
@@ -58,6 +52,12 @@ code {
 .updates {
   padding-left: 25px;
   width: 80vh;
+}
+
+.layout-body {
+  position: relative;
+  float: left;
+  z-index: 100;
 }
 
 .landing {
