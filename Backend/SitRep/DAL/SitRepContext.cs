@@ -10,6 +10,11 @@ public class SitRepContext:DbContext
         
     }
 
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Ticket>().ToTable("Ticket");
+        modelBuilder.Entity<User>().ToTable("User");    }
+
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<User> Users { get; set; }
 }

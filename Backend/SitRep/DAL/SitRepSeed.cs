@@ -36,6 +36,7 @@ public class SitRepSeed
 
         if (!context.Users.Any())
         {
+            Console.WriteLine("adding users");
             context.Users.AddRange(
                 new User
                 {
@@ -44,6 +45,8 @@ public class SitRepSeed
                 {
                     name = "User2"
                 });
+            context.SaveChanges();
+
         }
     }
 }
