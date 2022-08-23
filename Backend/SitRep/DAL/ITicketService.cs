@@ -14,5 +14,4 @@ public interface ITicketService
     public Dictionary<StatusType,int> GetStatusCounts();
     
     public IEnumerable<Ticket> GetRecentUpdates();
-    public void SetUpMockData();
 }
