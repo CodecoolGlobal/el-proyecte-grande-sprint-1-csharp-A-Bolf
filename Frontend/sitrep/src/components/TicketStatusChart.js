@@ -1,6 +1,8 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
 import { options } from "./StackedBarChart";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 
 const TicketStatusChart = ({ StatusCounts }) => {
   if (!StatusCounts) {
@@ -36,9 +38,22 @@ const TicketStatusChart = ({ StatusCounts }) => {
     ],
   };
   return (
-    <div className="chart-container" style={{ width: "25vw", height: "13vh" }}>
-      <Bar data={ChartData} options={options} />
-    </div>
+    <Card
+      style={{
+        justifyContent: "center",
+        width: "fit-content",
+        height: "fit-content",
+      }}
+    >
+      <CardContent>
+        <div
+          className="chart-container"
+          style={{ marginRight: "5vw", width: "25vw", height: "13vh" }}
+        >
+          <Bar data={ChartData} options={options} />
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
