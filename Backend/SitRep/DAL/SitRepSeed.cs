@@ -2,7 +2,9 @@ using SitRep.Models;
 using SitRep.Models.Types;
 
 namespace SitRep.DAL;
+
 using Microsoft.EntityFrameworkCore;
+
 public class SitRepSeed
 {
     private readonly SitRepContext context;
@@ -11,10 +13,9 @@ public class SitRepSeed
     {
         this.context = context;
     }
+
     public void Seed()
     {
-        
-        context.Database.Migrate();
         if (!context.Tickets.Any())
         {
             context.Tickets.AddRange(
@@ -31,7 +32,6 @@ public class SitRepSeed
                     Priority = PriorityType.LOW,
                 });
             context.SaveChanges();
-
         }
 
         if (!context.Users.Any())
@@ -41,12 +41,26 @@ public class SitRepSeed
                 new User
                 {
                     name = "User1"
-                },new User
+                },
+                new User
                 {
                     name = "User2"
                 });
             context.SaveChanges();
+        }
 
+        if (!context.Projects.Any())
+        {
+            context.Projects.AddRange(
+                new Project
+                {
+                    Name = "Project1"
+                },
+                new Project
+                {
+                    Name = "Project1"
+                });
+            context.SaveChanges();
         }
     }
 }
