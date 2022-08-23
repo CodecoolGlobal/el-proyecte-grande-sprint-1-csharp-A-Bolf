@@ -1,10 +1,12 @@
 import { Outlet } from "react-router";
 import SideNavBar from "./SideNavBar";
+import TopNavBar from "./TopNavBar";
+
 const Layout = () => {
   return (
     <>
       <SideNavBar />
-      <Outlet />
+      <TopNavBar />
     </>
   );
 };
