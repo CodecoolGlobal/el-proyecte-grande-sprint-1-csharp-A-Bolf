@@ -6,7 +6,16 @@ import { Routes, Route } from "react-router-dom";
 import { options } from "./components/StackedBarChart";
 import LoadScreen from "./components/LoadScreen";
 import axios from "axios";
+import IssuesPage from "./components/IssuesPage";
+import { IsoTwoTone } from "@mui/icons-material";
 export const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
+const convertDate = (tickets) => {
+  tickets.forEach((ticket) => {
+    ticket.dueDate = new Date(ticket.dueDate).toDateString();
+  });
+};
+
 function App() {
   function CalcTotalTicketCount(StatusData) {
     return (
@@ -49,6 +58,7 @@ function App() {
 
   useEffect(() => {
     if (isLoading) {
+      console.log("fetching");
       axios.get(`${API_ENDPOINT}/api/ticket`).then((res) => {
         setTickets(res.data);
       });
@@ -57,6 +67,10 @@ function App() {
       }
     }
   }, [isLoading, Tickets.length, StatusCounts, Updates.length]);
+
+  useEffect(() => {
+    convertDate(Tickets);
+  }, [Tickets]);
 
   if (isLoading) {
     return <LoadScreen />;
@@ -72,6 +86,7 @@ function App() {
             }
           />
           <Route path="add-issue" element={<CreateTicket />} />
+          <Route path="issues" element={<IssuesPage tickets={Tickets} />} />
         </Route>
       </Routes>
     </div>
