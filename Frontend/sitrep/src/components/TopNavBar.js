@@ -151,7 +151,7 @@ function DrawerAppBar({ notificationCount }) {
             </Box>
           </Toolbar>
         </AppBar>
-        <Box component="main" sx={{ p: 3, marginTop: "5vh" }}>
+        <Box component="main" sx={{ p: 3, marginTop: "10vh" }}>
           {/* page body */}
           <Outlet />
           <Toolbar />
