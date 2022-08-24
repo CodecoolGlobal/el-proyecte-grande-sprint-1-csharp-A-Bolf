@@ -1,4 +1,3 @@
-import { Outlet } from "react-router";
 import SideNavBar from "./SideNavBar";
 import TopNavBar from "./TopNavBar";
 
