@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CreateTicketButtons from "./CreateTicketButtons";
 import Dropdown from "./Dropdown";
 import { API_ENDPOINT } from "../App";
+import { TextField } from "@mui/material";
 
 const CreateTicket = () => {
   const handleSubmit = (e) => {
@@ -56,18 +57,25 @@ const CreateTicket = () => {
           <CreateTicketButtons Ticket={ticket} />
           <Dropdown options={options} toChange={setType} />
           <div className="text-container">
-            <input
+            <TextField
+              color="error"
               type="text"
               id="issue-title"
-              placeholder="Title"
+              variant="outlined"
+              label="Title"
+              margin="normal"
               required
               onChange={(e) => setTitle(e.target.value)}
             />
             <br />
-            <input
+            <TextField
+              color="error"
               type="text"
               id="issue-description"
-              placeholder="Description"
+              label="Description"
+              multiline="true"
+              minRows="10"
+              margin="normal"
               required
               onChange={(e) => setDescription(e.target.value)}
             />
