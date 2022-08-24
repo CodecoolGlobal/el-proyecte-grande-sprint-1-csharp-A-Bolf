@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SitRep.DAL;
 using SitRep.Models;
 
@@ -14,9 +16,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSingleton<ITicketService, TicketService>();
-builder.Services.AddSingleton<IRepository<Ticket>, TicketRepository>();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<SitRepContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("MSSQL");
+    options.UseSqlServer(connectionString);
+});
+builder.Services.AddScoped<ITicketService, TicketService>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: AllowedDevelopmentOrigin,
@@ -31,9 +38,14 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
 });
+builder.Services.AddTransient<SitRepSeed>();
 
 
 var app = builder.Build();
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+var initializer = services.GetRequiredService<SitRepSeed>();
+initializer.Seed();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

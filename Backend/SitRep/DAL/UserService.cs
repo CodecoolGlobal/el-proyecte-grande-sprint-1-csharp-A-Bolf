@@ -5,34 +5,38 @@ namespace SitRep.DAL;
 
 public class UserService : IUserService
 {
-    private IRepository<User> _Repository;
+    
+    private readonly SitRepContext _context;
+    
+    public UserService(SitRepContext context)
+    {
+        _context = context;
+    }
     public IEnumerable<User> GetAll()
     {
-        return _Repository.GetAll();
+        return _context.Users.ToList();
     }
 
     public User GetById(int id)
     {
-        return _Repository.GetById(id);
+        return _context.Users.FirstOrDefault(user => user.id == id);
     }
 
     public void Add(User user)
     {
-        _Repository.Add(user);
+        _context.Add(user);
+        _context.SaveChanges();
     }
 
     public void Update(User user)
     {
-        _Repository.Update(user);
+        _context.Update(user);
+        _context.SaveChanges();
     }
 
     public void Delete(int id)
     {
-        _Repository.Delete(id);
+        _context.Remove(GetById(id));
     }
     
-    public UserService(IRepository<User> repository)
-    {
-        _Repository = repository;
-    }
 }
