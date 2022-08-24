@@ -3,3 +3,6 @@
 ################################################################################
 
 /Backend/SitRep/.vs
+/Backend/SitRep/bin/Debug/net6.0
+/Backend/SitRep/obj/Debug/net6.0
+/Backend/SitRep/obj
