@@ -1,10 +1,14 @@
 import React from "react";
 
-const Dropdown = ({ label, options }) => {
+const Dropdown = ({ label, options, toChange }) => {
   return (
     <>
       {label}
-      <select>
+      <select
+        onChange={(e) => {
+          toChange(e.target.value);
+        }}
+      >
         {options.map((option) => (
           <option key={option}>{option}</option>
         ))}
