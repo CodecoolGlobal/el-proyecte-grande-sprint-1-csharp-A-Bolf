@@ -20,14 +20,21 @@ export default function TicketCard({ update, closeModal, isInModal }) {
             x
           </button>
         )}
+
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {update.title} <Chip label={update.status} />
           <Chip label={update.type} />
         </Typography>
         <Typography variant="h5" component="div"></Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {update.description}
-        </Typography>
+        <Box component="div" sx={{ display: "block", overflow: "auto" }}>
+          <Typography
+            noWrap
+            sx={{ mb: 1.5, display: "block", overflowY: "auto" }}
+            color="text.secondary"
+          >
+            {update.description}
+          </Typography>{" "}
+        </Box>
       </CardContent>
       <CardActions>
         <Button size="small">Edit</Button>

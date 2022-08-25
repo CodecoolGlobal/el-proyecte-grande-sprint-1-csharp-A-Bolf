@@ -1,18 +1,21 @@
 import React from "react";
+import { Select, MenuItem } from "@mui/material";
 
 const Dropdown = ({ label, options, toChange }) => {
   return (
     <>
       {label}
-      <select
+      <Select
+        autoWidth
+        defaultValue={options[0]}
         onChange={(e) => {
           toChange(e.target.value);
         }}
       >
         {options.map((option) => (
-          <option key={option}>{option}</option>
+          <MenuItem value={option}>{option}</MenuItem>
         ))}
-      </select>
+      </Select>
     </>
   );
 };

@@ -55,14 +55,18 @@ const CreateTicket = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <CreateTicketButtons Ticket={ticket} />
-          <Dropdown options={options} toChange={setType} />
+          <Dropdown
+            label={"Ticket Type: "}
+            options={options}
+            toChange={setType}
+          />
           <div className="text-container">
             <TextField
               color="error"
               type="text"
               id="issue-title"
               variant="outlined"
-              label="Title"
+              label="Title: "
               margin="normal"
               required
               onChange={(e) => setTitle(e.target.value)}
@@ -72,9 +76,10 @@ const CreateTicket = () => {
               color="error"
               type="text"
               id="issue-description"
-              label="Description"
+              label="Description: "
               multiline="true"
               minRows="10"
+              maxRows="15"
               margin="normal"
               required
               onChange={(e) => setDescription(e.target.value)}
@@ -84,12 +89,12 @@ const CreateTicket = () => {
           <div className="property-container">
             <p>Status: Open</p>
             <Dropdown
-              label={"Priority"}
+              label="Priority: "
               options={["low", "medium", "high"]}
               toChange={setPriority}
             />
             <Dropdown
-              label={"Category"}
+              label="Category: "
               options={["new feature", "bugfix"]}
               toChange={setCategory}
             />
@@ -101,7 +106,7 @@ const CreateTicket = () => {
               onChange={(e) => setDate(e.target.value)}
             />
             <Dropdown
-              label={"Assignee"}
+              label="Assignee: "
               options={["user1", "user2"]}
               toChange={setAssignee}
             />
