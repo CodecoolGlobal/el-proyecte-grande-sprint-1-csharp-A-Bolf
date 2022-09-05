@@ -1,10 +1,15 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SitRep.DAL;
 using SitRep.Models;
+using Swashbuckle.AspNetCore.Filters;
 
 const string AllowedDevelopmentOrigin = "_allowedDevelopmentOrigin";
 const string AllowedProductionOrigin = "_allowedProductionOrigin";
@@ -16,7 +21,34 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+    {
+        Description = "Standard Authorization header using the Bearer scheme (\"bearer {token}\"}",
+        In = ParameterLocation.Header,
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey
+    });
+    options.OperationFilter<SecurityRequirementsOperationFilter>();
+});
+
+builder.Services.AddAuthentication(
+    JwtBearerDefaults.AuthenticationScheme
+).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey =
+            new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration.GetSection("AppSettings:Token").Value)),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
 builder.Services.AddDbContext<SitRepContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("MSSQL");
@@ -57,7 +89,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-if(app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
     app.UseCors(AllowedDevelopmentOrigin);
 }
@@ -66,6 +98,7 @@ else
     app.UseCors(AllowedProductionOrigin);
 }
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
