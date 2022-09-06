@@ -1,10 +1,22 @@
-import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import Collapse from "@mui/material/Collapse";
+import Login from "./Login/Login";
 const LoginButton = () => {
+  let [open, setOpen] = useState(false);
   return (
-    <Link to="/app/dashboard">
-      <button className="btn btn-primary">Login</button>{" "}
-    </Link>
+    <>
+      <button
+        className="btn btn-primary"
+        onClick={() => {
+          setOpen(!open);
+        }}
+      >
+        {open ? "Nevermind" : "Login"}
+      </button>
+      <Collapse in={open}>
+        <Login />
+      </Collapse>
+    </>
   );
 };
 export default LoginButton;

@@ -19,3 +19,4 @@ export default function ErrorAlert({text,open}) {
     </Box>
   );
 }
+
