@@ -18,7 +18,6 @@ const Landing = () => {
           </div>
         </div>
         <LoginButton />
-        <Login></Login>
       </div>
     </FadeInDiv>
   );
