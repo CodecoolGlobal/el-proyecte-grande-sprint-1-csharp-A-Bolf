@@ -43,27 +43,28 @@ export default function Login() {
   }, [user, pwd]);
 
   const loginFetch = () => {
-    try {
-      axios
-        .post(`${API_ENDPOINT}/api/Auth/login`, {
-          userName: user,
-          password: pwd,
-        })
-        .then((res) => {
-          console.log(res.data);
-          let accessToken = res?.data;
-          setAuth({ user, pwd, accessToken });
-        });
-    } catch (error) {
-      if (!error.response) {
-        setErrMsg("No Server Response");
-      } else if (error.response.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg("Login Failed");
-      }
-      errRef.current.focus();
-    }
+    axios
+      .post(`${API_ENDPOINT}/api/Auth/login`, {
+        userName: user,
+        password: pwd,
+      })
+      .then((res) => {
+        console.log(res.data);
+        let accessToken = res?.data;
+        setAuth({ user, pwd, accessToken });
+      })
+      .catch((error) => {
+        if (!error.response) {
+          setErrMsg("No Server Response");
+        } else if (error.response.status === 401) {
+          setErrMsg("Unauthorized");
+        } else if (error.response.status === 400) {
+          setErrMsg("User Not Found!");
+        } else {
+          setErrMsg("Login Failed");
+        }
+        errRef.current.focus();
+      });
   };
 
   const handleSubmit = (event) => {
@@ -155,7 +156,10 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link
+                  href="https://letmegooglethat.com/?q=Memory+improvement+techniques"
+                  variant="body2"
+                >
                   Forgot password?
                 </Link>
               </Grid>

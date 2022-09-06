@@ -17,7 +17,6 @@ const DashBoard = ({ updates, StatusCounts, onTicketDelete }) => {
             />
           ))}
         </div>
-        <p>{auth.user}</p>
       </div>
       <TicketStatusChart StatusCounts={StatusCounts} />
     </div>
