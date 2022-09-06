@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SitRep.DAL;
 using SitRep.DAL;
@@ -18,6 +19,7 @@ public class TicketController:ControllerBase
     }
     
     [HttpGet("/api/ticket")]
+    [Authorize(Roles="User")]
     public IActionResult GetAll()
     {
         return Ok(_ticketService.GetAll());

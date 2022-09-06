@@ -1,17 +1,21 @@
 import React from "react";
 import TicketPreview from "./Modal/TicketPreview";
 import { useState } from "react";
+import { Button } from "@mui/material";
 const CreateTicketButtons = ({ AddOnClick, Ticket }) => {
   const [showmodal, setShowmodal] = useState(false);
   const modalStyle = {
     top: "50%",
     left: "50%",
-    width: "30%",
+    maxWidth: "40vw",
+    maxHeight: "40vh",
     transform: "translate(-50%, -50%)",
-    position: "absolute",
+    position: "fixed",
     opacity: "1",
+    zIndex: "100",
+    overflow: "hidden",
   };
-  const showModalStyle = {
+  const showModalBackgroundStyle = {
     top: "0",
     left: "0",
     position: "fixed",
@@ -19,6 +23,7 @@ const CreateTicketButtons = ({ AddOnClick, Ticket }) => {
     width: "100vw",
     opacity: "0.9",
     backgroundColor: "black",
+    zIndex: "99",
   };
   const hideModalStyle = {
     display: "none",
@@ -28,28 +33,30 @@ const CreateTicketButtons = ({ AddOnClick, Ticket }) => {
   };
   return (
     <>
-      <button
+      <Button
+        variant="outlined"
         type="button"
-        className="btn btn-primary create-ticket-button preview-button"
+        className="create-ticket-button preview-button"
         onClick={() => setShowmodal(!showmodal)}
       >
         Preview
-      </button>
+      </Button>
       <div
         className="modalContainer"
-        style={showmodal ? showModalStyle : hideModalStyle}
-      >
-        <div style={modalStyle}>
-          {" "}
-          <TicketPreview onClose={handleClose} update={Ticket} />
-        </div>
+        style={showmodal ? showModalBackgroundStyle : hideModalStyle}
+      ></div>
+      <div style={showmodal ? modalStyle : hideModalStyle}>
+        <TicketPreview onClose={handleClose} update={Ticket} />
       </div>
-      <button
-        className="btn btn-primary create-ticket-button add-button"
+
+      <Button
+        type="submit"
+        variant="contained"
+        className="create-ticket-button add-button"
         onClick={AddOnClick}
       >
         Add
-      </button>
+      </Button>
     </>
   );
 };

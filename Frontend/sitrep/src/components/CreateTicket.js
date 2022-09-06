@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CreateTicketButtons from "./CreateTicketButtons";
 import Dropdown from "./Dropdown";
 import { API_ENDPOINT } from "../App";
+import { TextField } from "@mui/material";
 
 const CreateTicket = () => {
   const handleSubmit = (e) => {
@@ -54,20 +55,32 @@ const CreateTicket = () => {
       <div className="form-container">
         <form onSubmit={handleSubmit}>
           <CreateTicketButtons Ticket={ticket} />
-          <Dropdown options={options} toChange={setType} />
+          <Dropdown
+            label={"Ticket Type: "}
+            options={options}
+            toChange={setType}
+          />
           <div className="text-container">
-            <input
+            <TextField
+              color="error"
               type="text"
               id="issue-title"
-              placeholder="Title"
+              variant="outlined"
+              label="Title: "
+              margin="normal"
               required
               onChange={(e) => setTitle(e.target.value)}
             />
             <br />
-            <input
+            <TextField
+              color="error"
               type="text"
               id="issue-description"
-              placeholder="Description"
+              label="Description: "
+              multiline="true"
+              minRows="10"
+              maxRows="15"
+              margin="normal"
               required
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -76,12 +89,12 @@ const CreateTicket = () => {
           <div className="property-container">
             <p>Status: Open</p>
             <Dropdown
-              label={"Priority"}
+              label="Priority: "
               options={["low", "medium", "high"]}
               toChange={setPriority}
             />
             <Dropdown
-              label={"Category"}
+              label="Category: "
               options={["new feature", "bugfix"]}
               toChange={setCategory}
             />
@@ -93,7 +106,7 @@ const CreateTicket = () => {
               onChange={(e) => setDate(e.target.value)}
             />
             <Dropdown
-              label={"Assignee"}
+              label="Assignee: "
               options={["user1", "user2"]}
               toChange={setAssignee}
             />

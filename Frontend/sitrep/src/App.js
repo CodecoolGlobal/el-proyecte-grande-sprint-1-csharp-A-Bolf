@@ -7,7 +7,6 @@ import { options } from "./components/StackedBarChart";
 import LoadScreen from "./components/LoadScreen";
 import axios from "axios";
 import IssuesPage from "./components/IssuesPage";
-import { IsoTwoTone } from "@mui/icons-material";
 export const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const convertDate = (tickets) => {
@@ -17,6 +16,10 @@ const convertDate = (tickets) => {
 };
 
 function App() {
+  const onTicketDelete = (ticket) => {
+    setTickets(Tickets.filter((x) => x.id !== ticket.id));
+  };
+
   function CalcTotalTicketCount(StatusData) {
     return (
       StatusData.OPEN +
@@ -82,7 +85,11 @@ function App() {
           <Route
             path="dashboard"
             element={
-              <Dashboard updates={Updates} StatusCounts={StatusCounts} />
+              <Dashboard
+                updates={Updates}
+                StatusCounts={StatusCounts}
+                onTicketDelete={onTicketDelete}
+              />
             }
           />
           <Route path="add-issue" element={<CreateTicket />} />

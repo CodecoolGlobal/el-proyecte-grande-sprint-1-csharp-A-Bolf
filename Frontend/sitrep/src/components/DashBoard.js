@@ -1,14 +1,17 @@
-import Update from "./Update";
 import TicketStatusChart from "./TicketStatusChart";
 import TicketCard from "./TicketCard";
-const DashBoard = ({ updates, StatusCounts }) => {
+const DashBoard = ({ updates, StatusCounts, onTicketDelete }) => {
   return (
     <div className="container justify-content-center">
       <div className="text-center updates ">
         <div className="col">
           <p>Updates:</p>
           {updates.map((update) => (
-            <TicketCard key={update.id} update={update} />
+            <TicketCard
+              key={update.id}
+              update={update}
+              onDelete={onTicketDelete}
+            />
           ))}
         </div>
       </div>

@@ -1,20 +1,16 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SitRep.Models;
 
 public class User
 {
-    public int id { get; set; }
-    public string name { get; set; }
+    public long id { get; set; }
+    public string UserName { get; set; }
+    [Required]
+    public string PasswordHash { get; set; }
 
-    
-     public User(int id, string name)
-    {
-        this.id = id;
-        this.name = name;
-    }
-    
-    public User()
-    {
-    }
+
+
 }

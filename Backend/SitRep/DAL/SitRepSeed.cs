@@ -16,6 +16,8 @@ public class SitRepSeed
 
     public void Seed()
     {
+        context.Database.EnsureDeleted();
+        context.Database.EnsureCreated();
         if (!context.Tickets.Any())
         {
             context.Tickets.AddRange(
@@ -40,11 +42,7 @@ public class SitRepSeed
             context.Users.AddRange(
                 new User
                 {
-                    name = "User1"
-                },
-                new User
-                {
-                    name = "User2"
+                    UserName = "User1", PasswordHash = ""
                 });
             context.SaveChanges();
         }
