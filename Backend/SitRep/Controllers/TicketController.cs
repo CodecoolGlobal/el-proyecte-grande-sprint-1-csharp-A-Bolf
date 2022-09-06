@@ -19,7 +19,7 @@ public class TicketController:ControllerBase
     }
     
     [HttpGet("/api/ticket")]
-    [Authorize(Roles="User")]
+    //[Authorize(Roles="User")]
     public IActionResult GetAll()
     {
         return Ok(_ticketService.GetAll());
