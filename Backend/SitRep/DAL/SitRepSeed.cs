@@ -16,7 +16,6 @@ public class SitRepSeed
 
     public void Seed()
     {
-        context.Database.EnsureDeleted();
         context.Database.EnsureCreated();
         if (!context.Tickets.Any())
         {
