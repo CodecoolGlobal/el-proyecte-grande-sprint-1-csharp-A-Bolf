@@ -4,9 +4,9 @@ import { API_ENDPOINT } from "../../App";
 import { useNavigate } from "react-router";
 
 const AuthContext = createContext({});
-let navigate = useNavigate;
 
 export const AuthProvider = ({ children }) => {
+  let navigate = useNavigate();
   const [auth, setAuth] = useState({});
   const [errMsg, setErrMsg] = useState("");
 
@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         if (!error.response) {
+          console.log(error);
           setErrMsg("No Server Response");
         } else if (error.response.status === 401) {
           setErrMsg("Unauthorized");
