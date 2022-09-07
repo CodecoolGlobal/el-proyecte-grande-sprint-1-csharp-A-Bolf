@@ -26,6 +26,10 @@ public class UserService : IUserService
     public void Register(UserDTO userDto)
     {
         var user = userDto.FromDto();
+        if (_context.Users.Any(u => u.UserName == user.UserName))
+        {
+            throw new Exception("username taken");
+        }
         _context.Users.AddRange(user);
         _context.SaveChanges();
     }

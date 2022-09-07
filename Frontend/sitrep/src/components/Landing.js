@@ -2,6 +2,7 @@ import LoginButton from "./LoginButton";
 import logo from "../SitRep_logo.png";
 import { fadeIn } from "react-animations";
 import styled, { keyframes } from "styled-components";
+import Login from "./Login/Login";
 const FadeInDiv = styled.div`
   animation: ${keyframes`${fadeIn}`} 2s;
 `;
