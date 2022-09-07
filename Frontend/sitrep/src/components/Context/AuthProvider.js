@@ -34,7 +34,10 @@ export const AuthProvider = ({ children }) => {
         }
       });
   };
-
+  const logOut = () => {
+    setAuth({});
+    navigate("/");
+  };
   const loginFetch = (username, password) => {
     axios
       .post(`${API_ENDPOINT}/api/Auth/login`, {
@@ -62,7 +65,15 @@ export const AuthProvider = ({ children }) => {
   };
   return (
     <AuthContext.Provider
-      value={{ auth, setAuth, loginFetch, registerFetch, errMsg, setErrMsg }}
+      value={{
+        auth,
+        setAuth,
+        logOut,
+        loginFetch,
+        registerFetch,
+        errMsg,
+        setErrMsg,
+      }}
     >
       {children}
     </AuthContext.Provider>

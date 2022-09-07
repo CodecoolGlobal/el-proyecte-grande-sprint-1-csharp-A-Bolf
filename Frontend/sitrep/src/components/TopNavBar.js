@@ -15,6 +15,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import AuthProvider from "./Context/AuthProvider";
+import { useContext } from "react";
 
 const theme = createTheme({
   palette: {
@@ -63,6 +65,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 function DrawerAppBar({ notificationCount }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { logOut } = useContext(AuthProvider);
   const isMenuOpen = Boolean(anchorEl);
 
   const handleProfileMenuOpen = (event) => {
@@ -91,7 +94,7 @@ function DrawerAppBar({ notificationCount }) {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Log Out</MenuItem>
+      <MenuItem onClick={logOut}>Log Out</MenuItem>
     </Menu>
   );
 
