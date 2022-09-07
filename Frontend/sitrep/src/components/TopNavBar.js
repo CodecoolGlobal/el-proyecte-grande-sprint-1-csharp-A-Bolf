@@ -17,6 +17,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AuthProvider from "./Context/AuthProvider";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   palette: {
@@ -64,6 +65,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 function DrawerAppBar({ notificationCount }) {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { logOut } = useContext(AuthProvider);
   const isMenuOpen = Boolean(anchorEl);
@@ -93,7 +95,13 @@ function DrawerAppBar({ notificationCount }) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate("Profile");
+        }}
+      >
+        Profile
+      </MenuItem>
       <MenuItem onClick={logOut}>Log Out</MenuItem>
     </Menu>
   );
