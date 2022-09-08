@@ -3,7 +3,7 @@ import axios from "axios";
 import { API_ENDPOINT } from "../../App";
 import { useNavigate } from "react-router";
 
-const AuthContext = createContext({});
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   let navigate = useNavigate();
@@ -30,14 +30,17 @@ export const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.response) {
+          console.log(error);
           setErrMsg("Username Already Taken");
         }
       });
   };
+
   const logOut = () => {
     setAuth({});
     navigate("/");
   };
+
   const loginFetch = (username, password) => {
     axios
       .post(`${API_ENDPOINT}/api/Auth/login`, {
@@ -48,6 +51,11 @@ export const AuthProvider = ({ children }) => {
         console.log(res.data);
         let accessToken = res?.data;
         setAuth({ username, password, accessToken });
+        sessionStorage.user = JSON.stringify({
+          username,
+          password,
+          accessToken,
+        });
         navigate("/app/dashboard");
       })
       .catch((error) => {
@@ -63,6 +71,7 @@ export const AuthProvider = ({ children }) => {
         }
       });
   };
+
   return (
     <AuthContext.Provider
       value={{
