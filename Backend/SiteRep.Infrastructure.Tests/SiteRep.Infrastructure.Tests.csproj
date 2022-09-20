@@ -12,6 +12,7 @@
 		<None Remove="Resources\Register\expected.json" />
 		<None Remove="Resources\Register\input.json" />
 		<None Remove="Resources\Register\newuser.json" />
+		<None Remove="Resources\Ticket\alltickets.json" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -22,6 +23,9 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\Register\newuser.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Ticket\alltickets.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 	</ItemGroup>

@@ -14,67 +14,50 @@ using System.Threading.Tasks;
 
 namespace SiteRep.Infrastructure.Tests
 {
-    public class AuthControllerTest
+    public class AuthControllerTest : BaseTest
     {
-        private readonly HttpClient _client;
-        string _token;
-        public AuthControllerTest()
-        {
-            TestingWebAppFactory<Program> factory = new TestingWebAppFactory<Program>();
-            _client = factory.CreateClient();
-        }
-
-        [SetUp]
-        public async Task Setup()
-        {
-            _token = await CreateToken();
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
-        }
         [Test]
-        public async Task LoginTest()
+        [TestCase("api/auth/login", "Resources.Register.input.json")]
+        public async Task Should_login_a_user(string route, string pathToTestUser)
         {
-            var response = await _client.GetAsync("/api/ticket");
-            //Assert
+            var postRequest = new HttpRequestMessage(HttpMethod.Post, route);
+            postRequest.Content = new StringContent(GetDataStructureFromJson(pathToTestUser), Encoding.UTF8, "application/json"); ;
+            
+            var response = await Client.SendAsync(postRequest);
+           
             response.EnsureSuccessStatusCode();
-
+            
             var responseString = await response.Content.ReadAsStringAsync();
-            var actual = JsonConvert.DeserializeObject<List<Ticket>>(responseString);
-            Assert.IsTrue(actual.Count > 0);
+            responseString.Should().NotBeNullOrEmpty();
         }
         [Test]
-        public async Task RegisterUser()
+        public async Task Should_register_a_user()
         {
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "api/auth/register");
             var content = new StringContent(GetDataStructureFromJson("Resources.Register.newuser.json"), Encoding.UTF8, "application/json");
             postRequest.Content = content;
             // Act
-            var response = await _client.SendAsync(postRequest);
+            var response = await Client.SendAsync(postRequest);
             // Assert
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<User>(responseString);
-            var expected = JsonConvert.DeserializeObject<User>(GetDataStructureFromJson("Resources.Register.expected.json"));
+            var user = JsonConvert.DeserializeObject<RegiterUserDTO>(responseString);
+            var expected = JsonConvert.DeserializeObject<RegiterUserDTO>(GetDataStructureFromJson("Resources.Register.expected.json"));
             user.Should().BeEquivalentTo(expected);
         }
 
-        public async Task<string> CreateToken()
+        [Test]
+        public async Task Should_update_password()
         {
-            var postRequest = new HttpRequestMessage(HttpMethod.Post, "api/auth/login");
+            var postRequest = new HttpRequestMessage(HttpMethod.Post, "api/auth/updatepassword");
             var content = new StringContent(GetDataStructureFromJson("Resources.Register.input.json"), Encoding.UTF8, "application/json");
             postRequest.Content = content;
-            var response = await _client.SendAsync(postRequest);
+            // Act
+            var response = await Client.SendAsync(postRequest);
+            // Assert
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-            return responseString;
-        }
-        private string GetDataStructureFromJson(string resource)
-        {
-            var structure = Assembly.GetExecutingAssembly().GetEmbeddedResourceContent(resource);
-            if (structure == null)
-            {
-                return String.Empty;
-            }
-            return structure;
+            responseString.Should().NotBeEmpty();
         }
     }
 }
