@@ -71,6 +71,7 @@ builder.Services.AddCors(options =>
         });
 });
 builder.Services.AddTransient<SitRepSeed>();
+builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
 
 
 var app = builder.Build();
