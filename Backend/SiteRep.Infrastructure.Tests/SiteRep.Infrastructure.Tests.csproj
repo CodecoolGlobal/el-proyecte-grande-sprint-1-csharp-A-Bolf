@@ -9,25 +9,39 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Resources\Register\expected.json" />
-		<None Remove="Resources\Register\input.json" />
-		<None Remove="Resources\Register\newuser.json" />
+		<None Remove="Resources\Auth\register_expected.json" />
+		<None Remove="Resources\Auth\register_request.json" />
+		<None Remove="Resources\Auth\user.json" />
+		<None Remove="Resources\Ticket\AddNewTicket\request.json" />
+		<None Remove="Resources\Ticket\AddNewTicket\response.json" />
 		<None Remove="Resources\Ticket\alltickets.json" />
+		<None Remove="Resources\Ticket\ByTicketId\response.json" />
+		<None Remove="Resources\Ticket\RetriveUpdates\response.json" />
+		<None Remove="Resources\Ticket\StatusCounts\response.json" />
+		<None Remove="Resources\Ticket\UpdateTicket\request.json" />
+		<None Remove="Resources\Ticket\UpdateTicket\response.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Resources\Register\expected.json">
+		<EmbeddedResource Include="Resources\Auth\register_expected.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\Register\input.json">
+		<EmbeddedResource Include="Resources\Auth\user.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</EmbeddedResource>
-		<EmbeddedResource Include="Resources\Register\newuser.json">
+		<EmbeddedResource Include="Resources\Auth\register_request.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Ticket\AddNewTicket\request.json" />
+		<EmbeddedResource Include="Resources\Ticket\AddNewTicket\response.json" />
 		<EmbeddedResource Include="Resources\Ticket\alltickets.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\Ticket\ByTicketId\response.json" />
+		<EmbeddedResource Include="Resources\Ticket\RetriveUpdates\response.json" />
+		<EmbeddedResource Include="Resources\Ticket\StatusCounts\response.json" />
+		<EmbeddedResource Include="Resources\Ticket\UpdateTicket\request.json" />
+		<EmbeddedResource Include="Resources\Ticket\UpdateTicket\response.json" />
 	</ItemGroup>
 
 	<ItemGroup>

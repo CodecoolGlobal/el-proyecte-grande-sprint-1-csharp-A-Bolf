@@ -17,7 +17,7 @@ namespace SiteRep.Infrastructure.Tests
     public class AuthControllerTest : BaseTest
     {
         [Test]
-        [TestCase("api/auth/login", "Resources.Register.input.json")]
+        [TestCase("api/auth/login", "Resources.Auth.user.json")]
         public async Task Should_login_a_user(string route, string pathToTestUser)
         {
             var postRequest = new HttpRequestMessage(HttpMethod.Post, route);
@@ -34,7 +34,7 @@ namespace SiteRep.Infrastructure.Tests
         public async Task Should_register_a_user()
         {
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "api/auth/register");
-            var content = new StringContent(GetDataStructureFromJson("Resources.Register.newuser.json"), Encoding.UTF8, "application/json");
+            var content = new StringContent(GetDataStructureFromJson("Resources.Auth.register_request.json"), Encoding.UTF8, "application/json");
             postRequest.Content = content;
             // Act
             var response = await Client.SendAsync(postRequest);
@@ -42,7 +42,7 @@ namespace SiteRep.Infrastructure.Tests
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<RegiterUserDTO>(responseString);
-            var expected = JsonConvert.DeserializeObject<RegiterUserDTO>(GetDataStructureFromJson("Resources.Register.expected.json"));
+            var expected = JsonConvert.DeserializeObject<RegiterUserDTO>(GetDataStructureFromJson("Resources.Auth.register_expected.json"));
             user.Should().BeEquivalentTo(expected);
         }
 
@@ -50,7 +50,7 @@ namespace SiteRep.Infrastructure.Tests
         public async Task Should_update_password()
         {
             var postRequest = new HttpRequestMessage(HttpMethod.Post, "api/auth/updatepassword");
-            var content = new StringContent(GetDataStructureFromJson("Resources.Register.input.json"), Encoding.UTF8, "application/json");
+            var content = new StringContent(GetDataStructureFromJson("Resources.Auth.user.json"), Encoding.UTF8, "application/json");
             postRequest.Content = content;
             // Act
             var response = await Client.SendAsync(postRequest);

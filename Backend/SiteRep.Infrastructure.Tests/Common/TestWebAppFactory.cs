@@ -28,7 +28,7 @@ namespace SiteRep.Infrastructure.Tests.Common
                     options.UseInMemoryDatabase("InMemoryEmployeeTest");
                     options.UseInternalServiceProvider(serviceProvider);
                 });
-                //var sp = services.BuildServiceProvider();
+                var sp = services.BuildServiceProvider();
 
                 //using (var scope = sp.CreateScope())
                 //{

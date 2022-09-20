@@ -9,15 +9,20 @@ using System.Threading.Tasks;
 
 namespace SiteRep.Infrastructure.Tests
 {
-    public class BaseTest
+    public abstract class BaseTest
     {
-        protected readonly HttpClient Client;
-        public BaseTest()
+        protected HttpClient Client;
+
+        [SetUp]
+        public void SetupBeforeEachTest()
         {
-            TestingWebAppFactory<Program> factory = new TestingWebAppFactory<Program>();
+            TestingWebAppFactory<Program> factory = new();
             Client = factory.CreateClient();
         }
-        protected string GetDataStructureFromJson(string resource)
+        public BaseTest()
+        {
+        }
+        protected static string GetDataStructureFromJson(string resource)
         {
             var structure = Assembly.GetExecutingAssembly().GetEmbeddedResourceContent(resource);
             if (structure == null)
