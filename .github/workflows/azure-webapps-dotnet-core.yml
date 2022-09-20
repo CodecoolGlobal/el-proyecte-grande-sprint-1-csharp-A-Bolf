@@ -55,7 +55,7 @@ jobs:
         run: dotnet build ./Backend/SitRep/SitRep.sln --configuration Release
       
       - name: Test with dotnet
-        run: dotnet test    
+        run: dotnet test ./Backend/SitRep/SitRep.sln    
         
       - name: dotnet publish
         run: dotnet publish ./Backend/SitRep/SitRep.sln -c Release -o ${{env.DOTNET_ROOT}}/myapp
