@@ -7,7 +7,7 @@ public interface IUserService
 {
     public IEnumerable<User> GetAll();
     public User GetById(long id);
-    public void Register(UserDTO userDto);
+    public User Register(UserDTO userDto);
 
     public User GetByName(string username);
     public bool VerifyPasswordHash(UserDTO userDto);
