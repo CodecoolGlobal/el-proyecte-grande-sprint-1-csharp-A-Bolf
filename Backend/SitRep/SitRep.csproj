@@ -34,14 +34,4 @@
 		<InternalsVisibleTo Include="SitRep.Infrastrucure.Tests" />
 	</ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="SitRep.Core\UseCases" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="SitRep.Tests\obj\project.assets.json" />
-      <_ContentIncludedByDefault Remove="SitRep.Tests\obj\project.packagespec.json" />
-      <_ContentIncludedByDefault Remove="SitRep.Tests\obj\SitRep.Tests.csproj.nuget.dgspec.json" />
-    </ItemGroup>
-
 </Project>
