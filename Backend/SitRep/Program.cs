@@ -7,7 +7,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using SitRep.Core;
 using SitRep.DAL;
 using SitRep.Models;
 using Swashbuckle.AspNetCore.Filters;
@@ -50,7 +49,7 @@ builder.Services.AddAuthentication(
     };
 });
 
-builder.Services.AddDbContext<ISitRepContext,SitRepContext>(options =>
+builder.Services.AddDbContext<SitRepContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("MSSQL");
     options.UseSqlServer(connectionString);
