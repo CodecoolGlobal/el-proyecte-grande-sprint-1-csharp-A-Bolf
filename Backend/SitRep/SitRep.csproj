@@ -17,6 +17,7 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.8" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2" />
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.22.1" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.1" />
         <PackageReference Include="Microsoft.TestPlatform.TestHost" Version="17.3.1" />
@@ -28,6 +29,16 @@
 
     <ItemGroup>
         <InternalsVisibleTo Include="SitRep.Tests" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="SitRep.Core\UseCases" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="SitRep.Tests\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="SitRep.Tests\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="SitRep.Tests\obj\SitRep.Tests.csproj.nuget.dgspec.json" />
     </ItemGroup>
 
 </Project>
